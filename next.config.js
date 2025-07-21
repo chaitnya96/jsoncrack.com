@@ -1,4 +1,3 @@
-const { withSentryConfig } = require("@sentry/nextjs");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
@@ -7,9 +6,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
  * @type {import('next').NextConfig}
  */
 const config = {
-  output: "export",
   reactStrictMode: false,
-  productionBrowserSourceMaps: true,
   compiler: {
     styledComponents: true,
   },
@@ -26,27 +23,4 @@ const config = {
   },
 };
 
-const configExport = () => {
-  if (process.env.ANALYZE === "true") return withBundleAnalyzer(config);
-
-  if (process.env.GITHUB_REPOSITORY === "AykutSarac/jsoncrack.com") {
-    return withSentryConfig(
-      config,
-      {
-        silent: true,
-        org: "aykut-sarac",
-        project: "json-crack",
-      },
-      {
-        widenClientFileUpload: true,
-        hideSourceMaps: true,
-        disableLogger: true,
-        disableServerWebpackPlugin: true,
-      }
-    );
-  }
-
-  return config;
-};
-
-module.exports = configExport();
+module.exports = process.env.ANALYZE === "true" ? withBundleAnalyzer(config) : config;

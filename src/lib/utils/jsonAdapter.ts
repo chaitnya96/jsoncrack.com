@@ -33,14 +33,8 @@ export const contentToJson = (value: string, format = FileFormat.JSON): Promise<
       }
 
       if (format === FileFormat.CSV) {
-        const { csv2json } = await import("json-2-csv");
-        const result = csv2json(value, {
-          trimFieldValues: true,
-          trimHeaderFields: true,
-          wrapBooleans: true,
-          excelBOM: true,
-        });
-        return resolve(result);
+        console.warn("CSV parsing not available - missing json-2-csv dependency");
+        return reject("CSV format is not supported");
       }
 
       return resolve({});
@@ -79,20 +73,8 @@ export const jsonToContent = async (json: string, format: FileFormat): Promise<s
       }
 
       if (format === FileFormat.CSV) {
-        const { json2csv } = await import("json-2-csv");
-        const parsedJson = JSON.parse(json);
-
-        const data = Array.isArray(parsedJson) ? parsedJson : [parsedJson];
-        return resolve(
-          json2csv(data, {
-            expandArrayObjects: true,
-            expandNestedObjects: true,
-            excelBOM: true,
-            wrapBooleans: true,
-            trimFieldValues: true,
-            trimHeaderFields: true,
-          })
-        );
+        console.warn("CSV conversion not available - missing json-2-csv dependency");
+        return resolve(json);
       }
 
       return resolve(json);

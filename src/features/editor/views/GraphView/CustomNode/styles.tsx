@@ -1,6 +1,5 @@
 import type { DefaultTheme } from "styled-components";
 import styled from "styled-components";
-import { LinkItUrl } from "react-linkify-it";
 import { NODE_DIMENSIONS } from "../../../../../constants/graph";
 
 type TextColorFn = {
@@ -18,7 +17,7 @@ function getTextColor({ $value, $type, theme }: TextColorFn) {
   return theme.NODE_COLORS.NODE_VALUE;
 }
 
-export const StyledLinkItUrl = styled(LinkItUrl)`
+export const StyledLinkItUrl = styled.span`
   text-decoration: underline;
   pointer-events: all;
 `;

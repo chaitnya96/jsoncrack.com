@@ -79,7 +79,7 @@ export const Toolbar = () => {
           leftSection={<LuLink />}
           size="compact-sm"
           variant="default"
-          onClick={() => setVisible("UpgradeModal", true)}
+          onClick={() => toast("Share feature not available")}
         >
           Share
         </Button>

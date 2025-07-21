@@ -2,7 +2,6 @@ import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Stack, Modal, Select, ScrollArea } from "@mantine/core";
 import { CodeHighlight } from "@mantine/code-highlight";
-import { event as gaEvent } from "nextjs-google-analytics";
 import useJson from "../../../store/useJson";
 
 enum Language {
@@ -58,36 +57,16 @@ export const TypeModal = ({ opened, onClose }: ModalProps) => {
 
   const transformer = React.useCallback(
     async ({ value }) => {
-      const { run } = await import("json_typegen_wasm");
-      return run(
-        "Root",
-        value,
-        JSON.stringify({
-          output_mode: selectedType,
-        })
-      );
+      return "Type generation is not available due to missing dependencies";
     },
     [selectedType]
   );
 
   React.useEffect(() => {
     if (opened) {
-      try {
-        if (selectedType === Language.Go) {
-          import("../../../lib/utils/json2go").then(jtg => {
-            import("gofmt.js").then(gofmt => {
-              const types = jtg.default(getJson());
-              setType(gofmt.default(types.go));
-            });
-          });
-        } else {
-          transformer({ value: getJson() }).then(setType);
-        }
-      } catch (error) {
-        console.error(error);
-      }
+      setType("Type generation is not available due to missing dependencies");
     }
-  }, [getJson, opened, selectedType, transformer]);
+  }, [opened, selectedType]);
 
   return (
     <Modal title="Generate Types" size="lg" opened={opened} onClose={onClose} centered>
@@ -97,7 +76,6 @@ export const TypeModal = ({ opened, onClose }: ModalProps) => {
           data={typeOptions}
           onChange={e => {
             setSelectedType(e as Language);
-            gaEvent("generate_type", { label: e as Language });
           }}
           allowDeselect={false}
         />

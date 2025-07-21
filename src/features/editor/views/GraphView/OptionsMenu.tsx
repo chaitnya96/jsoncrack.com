@@ -2,7 +2,6 @@ import React from "react";
 import { ActionIcon, Button, Flex, Menu, Text } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
 import styled from "styled-components";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { BsCheck2 } from "react-icons/bs";
 import { LuChevronRight, LuImageDown, LuMenu } from "react-icons/lu";
 import { TiFlowMerge } from "react-icons/ti";
@@ -99,7 +98,6 @@ export const OptionsMenu = () => {
             fz={12}
             onClick={() => {
               toggleDirection();
-              gaEvent("rotate_layout", { label: direction });
             }}
             leftSection={<StyledFlowIcon rotate={rotateLayout(direction || "RIGHT")} />}
             rightSection={
@@ -131,7 +129,6 @@ export const OptionsMenu = () => {
                 leftSection={<BsCheck2 opacity={rulersEnabled ? 100 : 0} />}
                 onClick={() => {
                   toggleRulers(!rulersEnabled);
-                  gaEvent("toggle_rulers", { label: rulersEnabled ? "on" : "off" });
                 }}
               >
                 <Text size="xs">Rulers</Text>
@@ -140,7 +137,6 @@ export const OptionsMenu = () => {
                 leftSection={<BsCheck2 opacity={gesturesEnabled ? 100 : 0} />}
                 onClick={() => {
                   toggleGestures(!gesturesEnabled);
-                  gaEvent("toggle_gestures", { label: gesturesEnabled ? "on" : "off" });
                 }}
               >
                 <Text size="xs">Trackpad Gestures</Text>
@@ -149,7 +145,6 @@ export const OptionsMenu = () => {
                 leftSection={<BsCheck2 opacity={imagePreviewEnabled ? 100 : 0} />}
                 onClick={() => {
                   toggleImagePreview(!imagePreviewEnabled);
-                  gaEvent("toggle_image_preview", { label: imagePreviewEnabled ? "on" : "off" });
                 }}
               >
                 <Text size="xs">Image Link Preview</Text>

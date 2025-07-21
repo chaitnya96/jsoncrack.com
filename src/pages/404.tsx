@@ -3,13 +3,12 @@ import Link from "next/link";
 import { Button, Stack, Text, Title } from "@mantine/core";
 import { NextSeo } from "next-seo";
 import { SEO } from "../constants/seo";
-import Layout from "../layout/PageLayout";
 
 const NotFound = () => {
   return (
-    <Layout>
+    <>
       <NextSeo {...SEO} title="404 | JSON Crack" noindex />
-      <Stack mt={100} justify="center" align="center">
+      <Stack mt={100} justify="center" align="center" style={{ minHeight: "100vh" }}>
         <Title fz={150} style={{ fontFamily: "monospace" }}>
           404
         </Title>
@@ -24,7 +23,7 @@ const NotFound = () => {
           </Button>
         </Link>
       </Stack>
-    </Layout>
+    </>
   );
 };
 

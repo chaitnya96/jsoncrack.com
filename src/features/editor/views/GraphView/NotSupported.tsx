@@ -77,7 +77,7 @@ export const NotSupported = () => {
           This diagram is too large and not supported at JSON Crack.
           <br />
           Try{" "}
-          <Anchor inherit c="teal" fw="500" onClick={() => setVisible("UpgradeModal", true)}>
+          <Anchor inherit c="teal" fw="500" href="https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=not_supported" target="_blank" rel="noopener">
             ToDiagram
           </Anchor>{" "}
           for larger diagrams and more features.

@@ -2,7 +2,6 @@ import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Stack, Modal, Button, Text, Anchor, Menu, Group, Paper } from "@mantine/core";
 import Editor from "@monaco-editor/react";
-import { event as gaEvent } from "nextjs-google-analytics";
 import { toast } from "react-hot-toast";
 import { FaChevronDown } from "react-icons/fa";
 import { FaCrown } from "react-icons/fa6";
@@ -42,7 +41,6 @@ export const SchemaModal = ({ opened, onClose }: ModalProps) => {
       const parsedSchema = JSON.parse(schema);
       setJsonSchema(parsedSchema);
 
-      gaEvent("apply_json_schema");
       toast.success("Applied schema!");
       onClose();
     } catch (error) {
@@ -58,17 +56,7 @@ export const SchemaModal = ({ opened, onClose }: ModalProps) => {
   };
 
   const generateMockData = async () => {
-    try {
-      const { JSONSchemaFaker } = await import("json-schema-faker");
-      const data = JSONSchemaFaker.generate(JSON.parse(schema));
-      setContents({ contents: JSON.stringify(data, null, 2), format: FileFormat.JSON });
-
-      gaEvent("generate_schema_mock_data");
-      onClose();
-    } catch (error) {
-      console.error(error);
-      toast.error("Invalid Schema");
-    }
+    toast.error("Mock data generation is not available due to missing dependencies");
   };
 
   return (
@@ -117,7 +105,7 @@ export const SchemaModal = ({ opened, onClose }: ModalProps) => {
               <Menu.Dropdown>
                 <Menu.Item onClick={generateMockData}>Generate Mock Data</Menu.Item>
                 <Menu.Item
-                  onClick={() => setVisible("UpgradeModal", true)}
+                  onClick={() => toast("Feature not available")}
                   rightSection={<FaCrown />}
                 >
                   Validate on Diagrams

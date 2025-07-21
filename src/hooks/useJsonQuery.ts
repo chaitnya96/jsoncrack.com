@@ -7,8 +7,7 @@ const useJsonQuery = () => {
   const setContents = useFile(state => state.setContents);
 
   const transformer = async ({ value }) => {
-    const { run } = await import("json_typegen_wasm");
-    return run("Root", value, JSON.stringify({ output_mode: "typescript/typealias" }));
+    return "Type generation not available";
   };
 
   const updateJson = async (query: string, cb?: () => void) => {
@@ -25,8 +24,7 @@ const useJsonQuery = () => {
   };
 
   const getJsonType = async () => {
-    const types = await transformer({ value: getJson() });
-    return types;
+    return "Type generation not available";
   };
 
   return { updateJson, getJsonType };
