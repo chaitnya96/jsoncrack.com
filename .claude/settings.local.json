@@ -11,7 +11,12 @@
       "Bash(grep:*)",
       "Bash(done)",
       "Bash(npx tsc:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run:*)",
+      "Bash(pkill:*)"
     ],
     "deny": []
   }

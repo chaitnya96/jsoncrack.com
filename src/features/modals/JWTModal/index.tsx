@@ -1,7 +1,7 @@
 import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Modal, Button, Textarea, Group } from "@mantine/core";
-import { decode } from "jsonwebtoken";
+import { jwtDecode } from "jwt-decode";
 import useFile from "../../../store/useFile";
 
 export const JWTModal = ({ opened, onClose }: ModalProps) => {
@@ -10,11 +10,14 @@ export const JWTModal = ({ opened, onClose }: ModalProps) => {
 
   const resolve = () => {
     if (!token) return;
-    const json = decode(token);
-    setContents({ contents: JSON.stringify(json, null, 2) });
-
-    setToken("");
-    onClose();
+    try {
+      const json = jwtDecode(token);
+      setContents({ contents: JSON.stringify(json, null, 2) });
+      setToken("");
+      onClose();
+    } catch (error) {
+      console.error("Invalid JWT token:", error);
+    }
   };
 
   return (

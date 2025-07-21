@@ -56,7 +56,7 @@ export const TypeModal = ({ opened, onClose }: ModalProps) => {
   }, [selectedType]);
 
   const transformer = React.useCallback(
-    async ({ value }) => {
+    async ({ value }: { value: any }) => {
       return "Type generation is not available due to missing dependencies";
     },
     [selectedType]

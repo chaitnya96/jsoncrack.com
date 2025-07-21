@@ -10,7 +10,7 @@ const normalizeNodeData = (nodeRows: NodeData["text"]) => {
   if (!nodeRows || nodeRows.length === 0) return "{}";
   if (nodeRows.length === 1 && !nodeRows[0].key) return `${nodeRows[0].value}`;
 
-  const obj = {};
+  const obj: Record<string, any> = {};
   nodeRows?.forEach(row => {
     if (row.type !== "array" && row.type !== "object") {
       if (row.key) obj[row.key] = row.value;

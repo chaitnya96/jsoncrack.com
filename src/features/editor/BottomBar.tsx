@@ -90,7 +90,7 @@ export const BottomBar = () => {
   };
 
   React.useEffect(() => {
-    if (data?.name) window.document.title = `${data.name} | JSON Crack`;
+    if (data?.name) window.document.title = `${data.name} | JSON Editor`;
   }, [data]);
 
   return (
@@ -162,7 +162,7 @@ export const BottomBar = () => {
               fz={12}
               onClick={() =>
                 window.open(
-                  "https://todiagram.com/blog/how-to-create-custom-diagrams-in-todiagram?utm_source=jsoncrack&utm_medium=bottom-bar&utm_campaign=custom-diagram",
+                  "#",
                   "_blank"
                 )
               }
